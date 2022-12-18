@@ -24,10 +24,7 @@ const particles = new Array(mainCanvas.width)
     .fill(0));
 
 function draw() {
-    /*
-    mainCanvas.width = window.innerWidth * 0.9;
-    mainCanvas.height = window.innerHeight * 0.9;
-    */
+    const myImageData = context.createImageData(mainCanvas.width, mainCanvas.height);
     context.fillStyle = 'red';
     context.fillRect(10, 10, 10, 10);
 

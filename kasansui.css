@@ -25,6 +25,7 @@
     #main-canvas {
         cursor: crosshair;
         background: #ffffff;
+        position: relative;
     }
 
     main {

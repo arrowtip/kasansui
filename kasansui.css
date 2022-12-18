@@ -15,8 +15,8 @@
         padding: 0.5rem;
         margin: 0.5rem;
         margin-right: 1rem;
-        width: 100%;
-        height: 100%;
+        width: auto;
+        height: auto;
         /* remove scrolling bars */
         overflow: hidden;
 

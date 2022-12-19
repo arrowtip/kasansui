@@ -34,8 +34,10 @@ function setMaterial(array, startingIndex, material) {
 
 function resize() {
     console.log("resize handler triggered");
+    let oldPixels = context.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
     mainCanvas.width = window.innerWidth * 0.9;
     mainCanvas.height = window.innerHeight * 0.8;
+    context.putImageData(oldPixels, 0, 0, 0, 0, mainCanvas.width, mainCanvas.height);
     pixels = context.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
 }
 

@@ -1,3 +1,29 @@
+
+    main {
+       text-align: center; 
+       flex: 1;
+       background: green;
+       position: static;
+    }
+
+    body {
+        background: red;
+        display: grid;
+        grid-template-rows: auto auto auto auto;
+        min-height: 100vh;
+        /* remove scrolling bars */
+        /*overflow: hidden;*/
+
+    }
+
+    button {
+        width: 10em;
+        height: 2em;
+        text-align: center;
+        box-shadow: 0 6px 4px 0 rgba(0, 0, 0, 0.2);
+    }
+/******************************************************************************************/
+
     * {
 		font-family: Arial, Verdana, sans-serif; 
 		text-align: justify;
@@ -7,31 +33,32 @@
 		border-radius: 0.5rem;
 	}
 
-@media (min-width: 40rem) and (max-width: 60rem) {
-
-}
-
-    body {
-        padding: 0.5rem;
-        margin: 0.5rem;
-        margin-right: 1rem;
-        width: auto;
-        height: auto;
-        /* remove scrolling bars */
-        overflow: hidden;
-
+    #header {
+        background: yellow;
     }
 
     #main-canvas {
         cursor: crosshair;
-        background: #ffffff;
-        position: relative;
+        background: grey;
+        position: sticky;
+        width: 100%;
+        height: 100%;
     }
 
-    main {
-       text-align: center; 
+    #footer {
+        display: flex;
+        justify-content: center;
+        background: blue;
+        border-radius: 0;
+        position: sticky;
     }
 
-    #canvas-div {
-        text-align: center;
+    #buttons {
+        background: cyan;
+    }
+
+/******************************************************************************************/
+
+    .container {
+        padding: .5em;
     }

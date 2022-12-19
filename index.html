@@ -14,7 +14,7 @@
     </head>
 
     <body>
-        <header class="container">
+        <header id="header" class="container">
             <h1>
                 Test
             </h1>
@@ -22,15 +22,19 @@
 
         <main class="container">
             <div id="canvas-div">
-                <canvas id="main-canvas" style="border: 1px solid #000000;">Your browser doesn't support this canvas!</canvas>
+                <canvas id="main-canvas">Your browser doesn't support this canvas!</canvas>
             </div>
         </main>
 
-        <div class="container">
+        <div id="buttons" class="container">
             <button>pause/play</button>
             <button>button2</button>
-            <p id="x-pos"></p>
-            <p id="y-pos"></p>
         </div>
+
+        <footer id="footer" class="container">
+            <p>
+                by monkey-coding
+            </p>
+        </footer>
     </body>
 </html>

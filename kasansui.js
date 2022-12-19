@@ -1,54 +1,117 @@
 const mainCanvas = document.getElementById("main-canvas");
-const context = mainCanvas.getContext('2d');
+const context = mainCanvas.getContext('2d', { willReadFrequently: true });
+let pixels = context.createImageData(mainCanvas.width, mainCanvas.height);
+const interval = 4;
+let delta;
+let then = Date.now();
 
-initialize();
-
-function initialize() {
-    window.addEventListener("resize", resizeCanvasEvt, false);
-    window.mainCanvas = mainCanvas;
-    window.frac = 0.9;
-    resizeCanvas(mainCanvas, 0.9);
+let mousePos = {
+    x: 0,
+    y: 0,
+    pressed: false
 }
 
-function resizeCanvas(canvas, frac) {
-    canvas.width = window.innerWidth * frac;
-    canvas.height = window.innerHeight * frac;
+const sand = {
+    r: 242,
+    g: 209,
+    b: 107,
+    a: 255
 }
 
-function resizeCanvasEvt(evt) {
-    resizeCanvas(evt.currentTarget.mainCanvas, evt.currentTarget.frac);
+const nothing = {
+    r: 0,
+    g: 0,
+    b: 0,
+    a: 0
 }
 
-mainCanvas.addEventListener('mousemove', mousePos, false);
+function setMaterial(array, startingIndex, material) {
+    array[startingIndex] = material.r;
+    array[startingIndex + 1] = material.g;
+    array[startingIndex + 2] = material.b;
+    array[startingIndex + 3] = material.a;
+}
+
+function resize() {
+    console.log("resize handler triggered");
+    mainCanvas.width = window.innerWidth * 0.9;
+    mainCanvas.height = window.innerHeight * 0.8;
+    pixels = context.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
+}
+
+function mouseDown(evt) {
+    console.log("mousedown handler triggered");
+    mousePos.pressed = true;
+}
+
+function mouseUp(evt) {
+    console.log("mouseup handler triggered")
+    mousePos.pressed = false;
+}
+
+function mouseMove(evt) {
+    console.log("mousemove handler triggered");
+    mousePos.x = (evt.offsetX == undefined ? evt.layerX : evt.offsetX);
+    mousePos.y = (evt.offsetY == undefined ? evt.layerY : evt.offsetY);
+}
+
+function addListeners() {
+    mainCanvas.addEventListener("mousedown", mouseDown, false);
+    window.addEventListener("resize", resize, false);
+    mainCanvas.addEventListener("mousemove", mouseMove, false);
+    window.addEventListener("mouseup", mouseUp, false);
+}
+
+function animate() {
+    for (let i = pixels.data.length - mainCanvas.width * 4 - 4; i >= 0; i -= 4) {
+        /* test if alpha channel is zero (aka pixel empty) */
+        if (pixels.data[i + 3] != 0) {
+            /* test if pixel underneath is free */
+            if (pixels.data[i + (mainCanvas.width * 4) + 3] == 0) {
+                setMaterial(pixels.data, i, nothing);
+                setMaterial(pixels.data, i + mainCanvas.width * 4, sand);
+            /* test if pixel to the bottom left is free and not outside the box */
+            } else if ((i % (mainCanvas.width * 4) != 0) && pixels.data[i + mainCanvas.width * 4 - 1] == 0) {
+                setMaterial(pixels.data, i, nothing);
+                setMaterial(pixels.data, i + mainCanvas.width * 4 - 4, sand);
+            /* test if pixel to the bottom right is free and not outside the box */
+            } else if (((i + 4) % (mainCanvas.width * 4) != 0) && pixels.data[i + mainCanvas.width * 4 + 4 + 3] == 0) {
+                setMaterial(pixels.data, i, nothing);
+                setMaterial(pixels.data, i + mainCanvas.width * 4 + 4, sand);
+            }
+        }
+    }
+}
+
 
 function draw() {
-    context.fillStyle = 'red';
-    context.fillRect(10, 10, 10, 10);
-
-    var imageData = context.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
-    var pixels = imageData.data;
-
-    for (var i = 0; i < pixels.length; i += 4) {
-        pixels[i] = 255;
-        pixels[i + 1] = 0;
-        pixels[i + 2] = 0;
-        pixels[i + 3] = 0;
-    }
-
-    /*context.putImageData(imageData, 0, 0);*/
-
-
-
     window.requestAnimationFrame(draw);
+
+    let now = Date.now();
+    delta = now - then;
+    if (delta > interval) {
+        then = now - (delta % interval);
+        
+
+        document.getElementById("x-pos").innerHTML = mousePos.x;
+        document.getElementById("y-pos").innerHTML = mousePos.y;
+
+        if (mousePos.pressed) {
+            setMaterial(pixels.data, 4 * mousePos.y * mainCanvas.width + 4 * mousePos.x, sand);
+        }
+
+        animate()
+
+        context.putImageData(pixels, 0, 0);
+    }
 }
 
-function getMousePos(canvas, event) {
-    let rect = canvas.getBoundingClientRect();
-    return {
-        x: event.clientX - rect.left,
-        y: event.clientY - rect.top
-    };
-}
+resize();
+addListeners();
 
-window.requestAnimationFrame(draw);
+console.log("initialization done!");
+
+draw();
+
+
 

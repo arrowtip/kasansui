@@ -1,19 +1,35 @@
 
+    * {
+		font-family: Arial, Verdana, sans-serif; 
+		text-align: justify;
+		font-size:1rem;
+		padding: 0;
+		margin: 0;
+		border-radius: 0.2rem;
+	}
+
+/******************************************************************************************/
+
+    html {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
     main {
-       text-align: center; 
-       flex: 1;
        background: green;
        position: static;
+       padding: 0;
     }
 
     body {
         background: red;
-        display: grid;
-        grid-template-rows: auto auto auto auto;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
         min-height: 100vh;
-        /* remove scrolling bars */
-        /*overflow: hidden;*/
-
+        justify-content: space-between;
+        align-items: stretch;
+        width: 100vw;
     }
 
     button {
@@ -21,17 +37,18 @@
         height: 2em;
         text-align: center;
         box-shadow: 0 6px 4px 0 rgba(0, 0, 0, 0.2);
+        background: #eeeecc;
     }
-/******************************************************************************************/
 
-    * {
-		font-family: Arial, Verdana, sans-serif; 
-		text-align: justify;
-		font-size:1rem;
-		padding: 0;
-		margin: 0;
-		border-radius: 0.5rem;
-	}
+    button:hover {
+        background: #ffffff;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+/******************************************************************************************/
 
     #header {
         background: yellow;
@@ -40,25 +57,94 @@
     #main-canvas {
         cursor: crosshair;
         background: grey;
-        position: sticky;
-        width: 100%;
-        height: 100%;
+        position: relative;
     }
 
-    #footer {
+    #desktop-footer {
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
         background: blue;
         border-radius: 0;
         position: sticky;
+        bottom: 0;
+        margin-bottom: 0 !important;
+        margin-left: 0;
+        margin-right: 0;
+        padding: .1rem;
+        padding-top: .4rem;
+    }
+
+    #mobile-footer {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        border-radius: 0;
+        position: sticky;
+        bottom: 0;
+        left: 0;
+        margin-bottom: 0;
+        margin-left: 0;
+        margin-right: 0;
+        padding: .4rem;
+        background: greenyellow;
+        width: 100vw;
+        box-sizing: border-box;
     }
 
     #buttons {
         background: cyan;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: .5rem;
     }
+
 
 /******************************************************************************************/
 
     .container {
-        padding: .5em;
+
+    }
+
+    .slider-label {
+        text-align: center;
+        display: block;
+    }
+
+    .item {
+
+    }
+
+/******************************************************************************************/
+
+    @media (orientation: portrait) {
+        #desktop-footer {
+            display: none !important;
+        }
+        #header {
+            display: none;
+        }
+        #buttons {
+            display: none;
+        }
+        main {
+            width: 100vw;
+            height: 90vh;
+            margin: 0;
+            box-sizing: border-box;
+        }
+    }
+
+    @media (orientation: landscape) and (width > 40rem) {
+        #mobile-footer {
+            display: none !important;
+        }
+        main {
+            width: 100%;
+            height: 50vh;
+        }
     }

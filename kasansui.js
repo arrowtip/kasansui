@@ -1,6 +1,11 @@
 const mainCanvas = document.getElementById("main-canvas");
 const context = mainCanvas.getContext('2d', { willReadFrequently: true });
-let pixels = context.createImageData(mainCanvas.width, mainCanvas.height);
+/*
+let canvasContainer = document.getElementById("main").getBoundingClientRect();
+mainCanvas.width = canvasContainer.width;
+mainCanvas.height = canvasContainer.height;
+let pixels = context.createImageData(canvasContainer.width, canvasContainer.height);
+*/
 const interval = 4;
 let delta;
 let then = Date.now();
@@ -35,8 +40,10 @@ function setMaterial(array, startingIndex, material) {
 function resize() {
     console.log("resize handler triggered");
     let oldPixels = context.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
-    mainCanvas.width = window.innerWidth * 0.9;
-    mainCanvas.height = window.innerHeight * 0.8;
+    canvasContainer = document.getElementById("main").getBoundingClientRect();
+    mainCanvas.width = canvasContainer.width;
+    mainCanvas.height = canvasContainer.height;
+    console.log("canvasContainer.width: " + canvasContainer.width);
     context.putImageData(oldPixels, 0, 0, 0, 0, mainCanvas.width, mainCanvas.height);
     pixels = context.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
 }
@@ -59,6 +66,7 @@ function mouseMove(evt) {
 
 function addListeners() {
     mainCanvas.addEventListener("mousedown", mouseDown, false);
+    /* resize events are only fired on the window object */
     window.addEventListener("resize", resize, false);
     mainCanvas.addEventListener("mousemove", mouseMove, false);
     window.addEventListener("mouseup", mouseUp, false);
@@ -93,11 +101,6 @@ function draw() {
     delta = now - then;
     if (delta > interval) {
         then = now - (delta % interval);
-        
-
-        document.getElementById("x-pos").innerHTML = mousePos.x;
-        document.getElementById("y-pos").innerHTML = mousePos.y;
-
         if (mousePos.pressed) {
             setMaterial(pixels.data, 4 * mousePos.y * mainCanvas.width + 4 * mousePos.x, sand);
         }
@@ -108,8 +111,8 @@ function draw() {
     }
 }
 
-resize();
 addListeners();
+resize();
 
 console.log("initialization done!");
 

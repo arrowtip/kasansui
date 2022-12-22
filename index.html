@@ -10,31 +10,56 @@
         </title>
         <link id="css" rel="stylesheet" type="text/css" href="kasansui.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="kasansui.js" async></script>
+        <script src="kasansui.js" async="false"></script>
     </head>
 
-    <body>
-        <header id="header" class="container">
+    <body class="container">
+        <header id="header" class="item">
             <h1>
-                Test
+                Kasansui
             </h1>
         </header>
 
-        <main class="container">
-            <div id="canvas-div">
-                <canvas id="main-canvas">Your browser doesn't support this canvas!</canvas>
-            </div>
+        <main id="main" class="item">
+            <canvas id="main-canvas">Your browser doesn't support this canvas!</canvas>
         </main>
 
-        <div id="buttons" class="container">
-            <button>pause/play</button>
-            <button>button2</button>
-        </div>
-
-        <footer id="footer" class="container">
+        <div id="buttons" class="item">
+            <button id="button-play">pause/play</button>
             <p>
-                by monkey-coding
+                <label class="slider-label" for="slider-gravitation">gravitation</label>
+                <input type="range" id="slider-gravitation" name="gravitation" min="1" max="10">
             </p>
+            <p>
+                <label class="slider-label" for="slider-initspeed">initial speed</label>
+                <input type="range" id="slider-initspeed" name="initial speed" min="1" max="10">
+            </p>
+            <button id="button-reset">button2</button>
+        </div>
+        <footer id="mobile-footer">
+            <button id="button-play">pause/play</button>
+            <p>
+                <label class="slider-label" for="slider-gravitation">gravitation</label>
+                <input type="range" id="slider-gravitation" name="gravitation" min="1" max="10" value="1">
+            </p>
+            <p>
+                <label class="slider-label" for="slider-initspeed">initial speed</label>
+                <input type="range" id="slider-initspeed" name="initial speed" min="1" max="10" value="1">
+            </p>
+            <button id="button-reset">button2</button>
         </footer>
+
     </body>
+
+    <footer id="desktop-footer">
+        <p>
+            by monkey-coding
+        </p>
+        <p>
+            Visit the 
+            <a href="https://github.com/arrowtip/kasansui">github repo</a>
+        </p>
+    </footer>
+
+
 </html>

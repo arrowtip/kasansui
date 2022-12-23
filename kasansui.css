@@ -32,6 +32,7 @@ button {
     box-shadow: 0 4px 2px 1px rgba(0, 0, 0, 0.2);
     background: #ddddcc;
     color: #222211;
+    cursor: pointer;
 }
 
 button:hover {
@@ -51,6 +52,7 @@ h1 {
     border-radius: 5%;
     height: .25rem;
     outline: none;
+    cursor: pointer;
 }
 
 /******************************************************************************************/

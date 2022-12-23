@@ -19,7 +19,7 @@
     }
 
     main {
-       background: green;
+       background: #222211;
        position: static;
        padding: 0;
     }
@@ -68,8 +68,11 @@
 
     #main-canvas {
         cursor: crosshair;
-        background: grey;
+        background: #aaaa99;
         position: relative;
+        display: block;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
     }
 
     #desktop-footer {

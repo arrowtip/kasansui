@@ -42,7 +42,7 @@ function resize() {
     let oldPixels = context.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
     canvasContainer = document.getElementById("main").getBoundingClientRect();
     mainCanvas.width = canvasContainer.width;
-    mainCanvas.height = canvasContainer.height;
+    mainCanvas.height = Math.floor(canvasContainer.height) - 10;
     console.log("canvasContainer.width: " + canvasContainer.width);
     context.putImageData(oldPixels, 0, 0, 0, 0, mainCanvas.width, mainCanvas.height);
     pixels = context.getImageData(0, 0, mainCanvas.width, mainCanvas.height);

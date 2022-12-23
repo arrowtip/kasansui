@@ -94,7 +94,7 @@ h1 {
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     border-radius: 0;
     position: static;
     margin-bottom: 0;
@@ -155,7 +155,7 @@ h1 {
 /******************************************************************************************/
 
 /* tablets and mobile phones with a not super low resolution screen */
-@media (orientation: portrait) and (width >= 20rem) {
+@media (orientation: portrait) and (width >= 26rem) {
     #desktop-footer {
         display: none !important;
     }
@@ -306,8 +306,36 @@ h1 {
     }
 }
 
-@media (orientation: portrait) and (width < 20rem) {
+@media (orientation: portrait) and (width < 26rem) {
+    #header {
+        display: none !important;
+    }
+    #mobile-footer {
+    }
+
+    #mobile-nav {
+    }
+
+    #desktop-footer {
+        display: none !important;
+    }
     
+    #desktop-nav {
+        display: none !important;
+    }
+
+    #desktop-buttons {
+        display: none !important;
+    }
+    
+    #header {
+        display: none !important;
+    }
+
+    body {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr auto;
+    }
 }
 
 @media (orientation: landscape) and (height < 20rem) {

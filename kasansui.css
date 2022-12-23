@@ -6,6 +6,7 @@
 		padding: 0;
 		margin: 0;
 		border-radius: 0.2rem;
+        box-sizing: border-box;
 	}
 
 /******************************************************************************************/
@@ -13,6 +14,8 @@
     html {
         overflow-x: hidden;
         overflow-y: hidden;
+        width: 100vw;
+        height: 100vh;
     }
 
     main {
@@ -22,9 +25,9 @@
     }
 
     body {
-        background: red;
+        background: #bbbbaa;
         display: grid;
-        min-height: 100vh;
+        height: 100vh;
         width: 100vw;
     }
 
@@ -32,8 +35,9 @@
         width: 10em;
         height: 2em;
         text-align: center;
-        box-shadow: 0 6px 4px 0 rgba(0, 0, 0, 0.2);
-        background: #eeeecc;
+        box-shadow: 0 4px 2px 1px rgba(0, 0, 0, 0.2);
+        background: #ddddcc;
+        color: #222211;
     }
 
     button:hover {
@@ -42,12 +46,23 @@
 
     h1 {
         text-align: center;
+        color: #222211;
+    }
+
+    .slider input {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        display: block;
+        background-color: #888888;
+        border-radius: 5%;
+        height: .25rem;
+        outline: none;
     }
 
 /******************************************************************************************/
 
     #header {
-        background: #555555;
+        background: #ccccbb;
         padding: .5rem;
     }
 
@@ -80,14 +95,12 @@
         justify-content: space-between;
         align-items: flex-start;
         border-radius: 0;
-        position: sticky;
-        bottom: 0;
-        left: 0;
+        position: static;
         margin-bottom: 0;
         margin-left: 0;
         margin-right: 0;
         padding: .4rem;
-        background: greenyellow;
+        background: #ccccbb;
         width: 100vw;
         box-sizing: border-box;
     }
@@ -111,10 +124,12 @@
     .slider-label {
         text-align: center;
         display: block;
+        color: #222211;
+        margin-bottom: .2rem;
     }
 
     .item {
-
+        box-shadow: 0 4px 2px 1px rgba(0, 0, 0, 0.2);
     }
 
 /******************************************************************************************/
@@ -126,13 +141,13 @@
         #header {
             display: flex;
             justify-content: space-between;
+            align-items: center;
         }
         #buttons {
             display: none;
         }
         main {
             width: 100vw;
-            height: 90vh;
             margin: 0;
             box-sizing: border-box;
         }
@@ -150,12 +165,12 @@
             }
             #menu-toggle a {
                 text-decoration: none;
-                color: #111111;
+                color: #222211;
                 transition: color 0.5s ease;
                 margin: .6rem;
             }
             #menu-toggle a:hover {
-                color: #555555;
+                color: #555544;
             }
             #menu-toggle #menu-checkbox {
                 opacity: 0;
@@ -173,7 +188,7 @@
                 height: .4rem;
                 margin-bottom: .4rem;
                 position: relative;
-                background: #dddd10;
+                background: #222211;
                 border-radius: .15rem;
                 z-index: 1;
                 
@@ -184,7 +199,7 @@
             }
             #mobile-nav-menu {
                 position: absolute;
-                background: #bbbbbb;
+                background: #ddddcc;
                 list-style-type: none;
                 -webkit-font-smoothing: antialiased;
                 padding: 1rem;
@@ -194,7 +209,7 @@
                 right: 0;
                 margin-top: -1rem;
                 margin-right: -1rem;
-                width: 10rem;
+                width: 15rem;
                 max-width: 50vw;
 
                 transform-origin: 0 0;
@@ -210,7 +225,7 @@
             #menu-toggle input:checked ~ span {
                 opacity: 1;
                 transform: translate(0, .8rem) rotate(45deg);
-                background: #505000;
+                background: #222211;
             }
 
             #menu-toggle input:checked ~ span:nth-last-child(3) {

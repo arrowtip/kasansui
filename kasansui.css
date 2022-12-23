@@ -161,6 +161,9 @@
         #desktop-footer {
             display: none !important;
         }
+        #desktop-nav {
+            display: none !important;
+        }
         #header {
             display: flex;
             justify-content: space-between;

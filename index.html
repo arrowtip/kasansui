@@ -37,15 +37,26 @@
             </nav>
         </header>
 
+        <nav id="desktop-nav"> 
+            <ul id="desktop-nav-menu">
+                <a href="https://en.wikipedia.org/wiki/Japanese_dry_garden">
+                    <li>What is Kasansui?</li>
+                </a>
+                <a href="https://github.com/arrowtip/kasansui">
+                    <li>Visit the github</li>
+                </a>
+            </ul>
+        </nav>
+
         <main id="main" class="item">
-            <canvas id="main-canvas">Your browser doesn't support this canvas!</canvas>
+            <!-- <canvas id="main-canvas">Your browser doesn't support this canvas!</canvas> -->
         </main>
 
-        <div id="buttons" class="item">
+        <div id="desktop-buttons" class="item">
             <button class="button-play">stop</button>
             <p class="slider">
                 <label class="slider-label" for="slider-gravitation">gravitation</label>
-                <input type="range" id="slider-gravitation" name="gravitation" min="1" max="10">
+                <input type="range" id="slider-gravitation" name="gravitation" min="1" max="10" value="1">
             </p>
             <button id="button-reset">button2</button>
         </div>
@@ -58,17 +69,10 @@
             <button id="button-reset">reset</button>
         </footer>
 
+        <footer id="desktop-footer">
+            <p>
+                by monkey-coding
+            </p>
+        </footer>
     </body>
-
-    <footer id="desktop-footer">
-        <p>
-            by monkey-coding
-        </p>
-        <p>
-            Visit the 
-            <a href="https://github.com/arrowtip/kasansui">github repo</a>
-        </p>
-    </footer>
-
-
 </html>

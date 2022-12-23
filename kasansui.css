@@ -27,8 +27,8 @@
     body {
         background: #bbbbaa;
         display: grid;
-        height: 100vh;
         width: 100vw;
+        height: 100vh;
     }
 
     button {
@@ -82,11 +82,9 @@
         align-items: center;
         background: blue;
         border-radius: 0;
-        position: sticky;
-        bottom: 0;
-        margin-bottom: 0 !important;
-        margin-left: 0;
-        margin-right: 0;
+        margin-bottom: 0;
+        margin-left: -0.5rem;
+        margin-right: -0.5rem;
         padding: .1rem;
         padding-top: .4rem;
     }
@@ -108,13 +106,34 @@
         box-sizing: border-box;
     }
 
-    #buttons {
-        background: cyan;
+    #desktop-buttons {
+        background: #ccccbb;
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
         padding: .5rem;
-        cursor: pointer;
+    }
+
+    #desktop-nav {
+        background: #ccccbb;
+        padding: .5rem;
+    }
+    
+    #desktop-nav-menu {
+        list-style-type: none;
+    }
+
+    #desktop-nav-menu a {
+        text-decoration: none;
+        color: #222211;
+        transition: color 0.5s ease;
+        margin: .6rem;
+    }
+
+    #desktop-nav-menu a:hover {
+        color: #555544;
     }
 
 
@@ -137,6 +156,7 @@
 
 /******************************************************************************************/
 
+    /* tablets and mobile phones with a not super low resolution screen */
     @media (orientation: portrait) and (width > 20rem) {
         #desktop-footer {
             display: none !important;
@@ -146,7 +166,7 @@
             justify-content: space-between;
             align-items: center;
         }
-        #buttons {
+        #desktop-buttons {
             display: none;
         }
         main {
@@ -242,12 +262,34 @@
         /* /hamburger */
     }
 
+    /* desktop computers */
     @media (orientation: landscape) and (width > 40rem) {
         #mobile-footer {
             display: none !important;
         }
+        #mobile-nav {
+            display: none !important;
+        }
+        body {
+            grid-template-columns: 1fr auto;
+            grid-template-rows: auto 1fr 1fr auto;
+            gap: .5rem;
+            padding: .5rem .5rem 0 .5rem;
+        }
+        #desktop-buttons {
+            grid-column: 2 / 3;
+            grid-row: 2 / 3;
+        }
+        #header {
+            grid-column: 1 / 3;
+            grid-row: 1 / 2;
+        }
         main {
-            width: 100%;
-            height: 50vh;
+            grid-column: 1 / 2;
+            grid-row: 2 / 4;
+        }
+        #desktop-footer {
+            grid-column: 1 / 3;
+            grid-row: 4 / 5;
         }
     }

@@ -1,11 +1,7 @@
 const mainCanvas = document.getElementById("main-canvas");
 const context = mainCanvas.getContext('2d', { willReadFrequently: true });
-/*
-let canvasContainer = document.getElementById("main").getBoundingClientRect();
-mainCanvas.width = canvasContainer.width;
-mainCanvas.height = canvasContainer.height;
-let pixels = context.createImageData(canvasContainer.width, canvasContainer.height);
-*/
+let pixels = context.createImageData(mainCanvas.width, mainCanvas.height);
+/* variables to control frame rate */
 const interval = 4;
 let delta;
 let then = Date.now();
@@ -38,13 +34,18 @@ function setMaterial(array, startingIndex, material) {
 }
 
 function resize() {
+    /*
     console.log("resize handler triggered");
-    let oldPixels = context.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
-    canvasContainer = document.getElementById("main").getBoundingClientRect();
-    mainCanvas.width = canvasContainer.width;
-    mainCanvas.height = Math.floor(canvasContainer.height) - 10;
-    console.log("canvasContainer.width: " + canvasContainer.width);
-    context.putImageData(oldPixels, 0, 0, 0, 0, mainCanvas.width, mainCanvas.height);
+    console.log("clientHeight: " + mainCanvas.clientHeight);
+    console.log("Height: " + mainCanvas.height);
+    mainCanvas.height = mainCanvas.clientHeight / 2;
+    mainCanvas.width = mainCanvas.clientWidth / 2;
+    console.log("clientHeight2: " + mainCanvas.clientHeight);
+    console.log("Height2: " + mainCanvas.height);
+    */
+    let parent = mainCanvas.parentElement;
+    mainCanvas.width = parent.offsetWidth;
+    mainCanvas.height = parent.offsetHeight;
     pixels = context.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
 }
 
@@ -73,21 +74,23 @@ function addListeners() {
 }
 
 function animate() {
-    for (let i = pixels.data.length - mainCanvas.width * 4 - 4; i >= 0; i -= 4) {
+    console.log(pixels.width);
+    console.log(mainCanvas.width);
+    for (let i = pixels.data.length - pixels.width * 4 - 4; i >= 0; i -= 4) {
         /* test if alpha channel is zero (aka pixel empty) */
         if (pixels.data[i + 3] != 0) {
             /* test if pixel underneath is free */
-            if (pixels.data[i + (mainCanvas.width * 4) + 3] == 0) {
+            if (pixels.data[i + pixels.width * 4 + 3] == 0) {
                 setMaterial(pixels.data, i, nothing);
-                setMaterial(pixels.data, i + mainCanvas.width * 4, sand);
-            /* test if pixel to the bottom left is free and not outside the box */
-            } else if ((i % (mainCanvas.width * 4) != 0) && pixels.data[i + mainCanvas.width * 4 - 1] == 0) {
+                setMaterial(pixels.data, i + pixels.width * 4, sand);
+                /* test if pixel to the bottom left is free and not outside the box */
+            } else if ((i % (pixels.width * 4) != 0) && pixels.data[i + pixels.width * 4 - 1] == 0) {
                 setMaterial(pixels.data, i, nothing);
-                setMaterial(pixels.data, i + mainCanvas.width * 4 - 4, sand);
-            /* test if pixel to the bottom right is free and not outside the box */
-            } else if (((i + 4) % (mainCanvas.width * 4) != 0) && pixels.data[i + mainCanvas.width * 4 + 4 + 3] == 0) {
+                setMaterial(pixels.data, i + pixels.width * 4 - 4, sand);
+                /* test if pixel to the bottom right is free and not outside the box */
+            } else if (((i + 4) % (pixels.width * 4) != 0) && pixels.data[i + pixels.width * 4 + 4 + 3] == 0) {
                 setMaterial(pixels.data, i, nothing);
-                setMaterial(pixels.data, i + mainCanvas.width * 4 + 4, sand);
+                setMaterial(pixels.data, i + pixels.width * 4 + 4, sand);
             }
         }
     }

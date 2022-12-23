@@ -74,8 +74,6 @@ function addListeners() {
 }
 
 function animate() {
-    console.log(pixels.width);
-    console.log(mainCanvas.width);
     for (let i = pixels.data.length - pixels.width * 4 - 4; i >= 0; i -= 4) {
         /* test if alpha channel is zero (aka pixel empty) */
         if (pixels.data[i + 3] != 0) {

@@ -155,7 +155,7 @@ h1 {
 /******************************************************************************************/
 
 /* tablets and mobile phones with a not super low resolution screen */
-@media (orientation: portrait) and (width > 20rem) {
+@media (orientation: portrait) and (width >= 20rem) {
     #desktop-footer {
         display: none !important;
     }
@@ -269,7 +269,7 @@ h1 {
 }
 
 /* desktop computers */
-@media (orientation: landscape) and (width > 40rem) {
+@media (orientation: landscape) and (height >= 20rem) {
     #mobile-footer {
         display: none !important;
     }
@@ -303,5 +303,48 @@ h1 {
     #desktop-footer {
         grid-column: 1 / 3;
         grid-row: 4 / 5;
+    }
+}
+
+@media (orientation: portrait) and (width < 20rem) {
+    
+}
+
+@media (orientation: landscape) and (height < 20rem) {
+    #mobile-footer {
+        display: none !important;
+    }
+
+    #mobile-nav {
+        display: none !important;
+    }
+
+    #desktop-footer {
+        display: none !important;
+    }
+    
+    #desktop-nav {
+        display: none !important;
+    }
+    
+    #header {
+        display: none !important;
+    }
+
+    body {
+        grid-template-rows: 1fr;
+        grid-template-columns: 1fr auto;
+        gap: .2rem;
+        padding: .2rem;
+    }
+
+    #canvas-div {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+    }
+
+    #desktop-buttons {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
     }
 }

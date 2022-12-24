@@ -6,6 +6,10 @@ const interval = 4;
 let delta;
 let then = Date.now();
 
+let play = true;
+let gravity = 1;
+let startStopButtons = document.getElementsByClassName("button-play");
+
 let mousePos = {
     x: 0,
     y: 0,
@@ -31,6 +35,23 @@ function setMaterial(array, startingIndex, material) {
     array[startingIndex + 1] = material.g;
     array[startingIndex + 2] = material.b;
     array[startingIndex + 3] = material.a;
+}
+
+function reset() {
+    console.log("reset triggered");
+    context.clearRect(0, 0, pixels.width, pixels.height);
+    pixels = context.getImageData(0, 0, pixels.width, pixels.height);
+}
+
+function startStop() {
+    play = !play;
+    for (let playButton of startStopButtons) {
+        if (play) {
+            playButton.innerHTML = "stop";
+        } else {
+            playButton.innerHTML = "start";
+        }
+    }
 }
 
 function resize() {
@@ -71,6 +92,7 @@ function addListeners() {
     window.addEventListener("resize", resize, false);
     mainCanvas.addEventListener("mousemove", mouseMove, false);
     window.addEventListener("mouseup", mouseUp, false);
+
 }
 
 function animate() {
@@ -106,7 +128,9 @@ function draw() {
             setMaterial(pixels.data, 4 * mousePos.y * mainCanvas.width + 4 * mousePos.x, sand);
         }
 
-        animate()
+        if (play) {
+            animate()
+        }
 
         context.putImageData(pixels, 0, 0);
     }

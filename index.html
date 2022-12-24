@@ -53,20 +53,20 @@
         </div>
 
         <div id="desktop-buttons" class="item">
-            <button class="button-play">stop</button>
+            <button class="button-play" onclick="startStop()">stop</button>
             <p class="slider">
                 <label class="slider-label" for="slider-gravitation">gravitation</label>
                 <input type="range" id="slider-gravitation" name="gravitation" min="1" max="10" value="1">
             </p>
-            <button id="button-reset">button2</button>
+            <button class="button-reset" onclick="reset()">reset</button>
         </div>
         <footer id="mobile-footer">
-            <button class="button-play">stop</button>
+            <button class="button-play" onclick="startStop()">stop</button>
             <p class="slider">
                 <label class="slider-label" for="slider-gravitation">gravitation</label>
                 <input type="range" id="slider-gravitation" name="gravitation" min="1" max="10" value="1">
             </p>
-            <button id="button-reset">reset</button>
+            <button class="button-reset" onclick="reset()">reset</button>
         </footer>
 
         <footer id="desktop-footer">

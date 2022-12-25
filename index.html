@@ -56,7 +56,7 @@
             <button class="button-play" onclick="startStop()">stop</button>
             <p class="slider">
                 <label class="slider-label" for="slider-gravitation">gravitation</label>
-                <input type="range" id="slider-gravitation" name="gravitation" min="0" max="9" value="1">
+                <input type="range" class="slider-gravitation" name="gravitation" min="0" max="9" value="1" step="1" onchange="gravityChange(this.value)">
             </p>
             <button class="button-reset" onclick="reset()">reset</button>
         </div>
@@ -64,7 +64,7 @@
             <button class="button-play" onclick="startStop()">stop</button>
             <p class="slider">
                 <label class="slider-label" for="slider-gravitation">gravitation</label>
-                <input type="range" id="slider-gravitation" name="gravitation" min="0" max="9" value="1">
+                <input type="range" class="slider-gravitation" name="gravitation" min="0" max="9" value="1" step="1" onchange="gravityChange(this.value)">
             </p>
             <button class="button-reset" onclick="reset()">reset</button>
         </footer>

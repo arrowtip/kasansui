@@ -145,6 +145,10 @@ function animate() {
     }
 }
 
+function addSand() {
+    
+}
+
 
 function draw() {
     window.requestAnimationFrame(draw);
@@ -154,11 +158,10 @@ function draw() {
     if (delta > interval) {
         then = now - (delta % interval);
         if (mousePos.pressed) {
-            setMaterial(pixels.data, 4 * mousePos.y * mainCanvas.width + 4 * mousePos.x, sand);
-            //context.rect(mousePos.x, mousePos.y, 10, 10);
-            //context.fillStyle = "rgb(${sand.r}, ${sand.g}, ${sand.b})";
-            //context.fill();
+            //setMaterial(pixels.data, 4 * mousePos.y * mainCanvas.width + 4 * mousePos.x, sand);
+            addSand();
             velocities[4 * mousePos.y * mainCanvas.width + 4 * mousePos.x] = 1;
+            velocities[4 * mousePos.y * mainCanvas.width + 4 * mousePos.x + 4] = 1;
         }
 
         if (play) {

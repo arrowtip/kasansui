@@ -19,7 +19,7 @@ html {
 }
 
 body {
-    background: #bbbbaa;
+    background: #aa9988;
     display: grid;
     width: 100vw;
     height: 100vh;
@@ -30,9 +30,10 @@ button {
     height: 2em;
     text-align: center;
     box-shadow: 0 4px 2px 1px rgba(0, 0, 0, 0.2);
-    background: #ddddcc;
-    color: #222211;
+    background: #ddeeff;
+    color: #000011;
     cursor: pointer;
+    margin: .1rem;
 }
 
 button:hover {
@@ -41,14 +42,14 @@ button:hover {
 
 h1 {
     text-align: center;
-    color: #222211;
+    color: #000011;
 }
 
 .slider input {
     -webkit-appearance: none;
     -moz-appearance: none;
     display: block;
-    background-color: #888888;
+    background: #555566;
     border-radius: 5%;
     height: .25rem;
     outline: none;
@@ -58,13 +59,12 @@ h1 {
 /******************************************************************************************/
 
 #header {
-    background: #ccccbb;
     padding: .5rem;
 }
 
 #main-canvas {
     cursor: crosshair;
-    background: #aaaa99;
+    background: #aabbcc;
     position: absolute;
     display: inline-block;
     border-bottom-left-radius: 0;
@@ -101,13 +101,11 @@ h1 {
     margin-left: 0;
     margin-right: 0;
     padding: .4rem;
-    background: #ccccbb;
     width: 100vw;
     box-sizing: border-box;
 }
 
 #desktop-buttons {
-    background: #ccccbb;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -117,7 +115,6 @@ h1 {
 }
 
 #desktop-nav {
-    background: #ccccbb;
     padding: .5rem;
 }
 
@@ -127,13 +124,13 @@ h1 {
 
 #desktop-nav-menu a {
     text-decoration: none;
-    color: #222211;
+    color: #000011;
     transition: color 0.5s ease;
     margin: .6rem;
 }
 
 #desktop-nav-menu a:hover {
-    color: #555544;
+    color: #222255;
 }
 
 
@@ -144,12 +141,14 @@ h1 {
 .slider-label {
     text-align: center;
     display: block;
-    color: #222211;
+    color: #000011;
     margin-bottom: .2rem;
 }
 
 .item {
     box-shadow: 0 4px 2px 1px rgba(0, 0, 0, 0.2);
+    background: #ccddee;
+    color: #000011;
 }
 
 /******************************************************************************************/
@@ -198,12 +197,12 @@ h1 {
     }
     #menu-toggle a {
         text-decoration: none;
-        color: #222211;
+        color: #000011;
         transition: color 0.5s ease;
         margin: .6rem;
     }
     #menu-toggle a:hover {
-        color: #555544;
+        color: #222244;
     }
     #menu-toggle #menu-checkbox {
         opacity: 0;
@@ -221,7 +220,7 @@ h1 {
         height: .4rem;
         margin-bottom: .4rem;
         position: relative;
-        background: #222211;
+        background: #000011;
         border-radius: .15rem;
         z-index: 1;
 
@@ -232,7 +231,7 @@ h1 {
     }
     #mobile-nav-menu {
         position: absolute;
-        background: #ddddcc;
+        background: #ddeeff;
         list-style-type: none;
         -webkit-font-smoothing: antialiased;
         padding: 1rem;
@@ -256,7 +255,7 @@ h1 {
     #menu-toggle input:checked~span {
         opacity: 1;
         transform: translate(0, .8rem) rotate(45deg);
-        background: #222211;
+        background: #000011;
     }
     #menu-toggle input:checked~span:nth-last-child(3) {
         opacity: 0;

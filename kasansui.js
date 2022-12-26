@@ -165,6 +165,9 @@ function draw() {
         if (mousePos.pressed) {
             //setMaterial(pixels.data, 4 * mousePos.y * mainCanvas.width + 4 * mousePos.x, sand);
             addSand(6);
+            addSand(8);
+            addSand(10);
+            addSand(8);
         }
 
         if (play) {

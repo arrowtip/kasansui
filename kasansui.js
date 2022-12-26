@@ -145,10 +145,15 @@ function animate() {
     }
 }
 
-function addSand() {
-    
+function addSand(radius) {
+    let xPos = mousePos.x - radius + Math.floor(Math.random() * (2 * (radius + 1)));
+    let yPos = mousePos.y - radius + Math.floor(Math.random() * (2 * (radius + 1)));
+    if (xPos >= 0 && xPos < pixels.width
+            && yPos >= 0 && yPos < pixels.height) {
+        setMaterial(pixels.data, yPos * 4 * pixels.width + 4 * xPos, sand);
+        velocities[yPos * 4 * pixels.width + 4 * xPos] = 1;
+    }
 }
-
 
 function draw() {
     window.requestAnimationFrame(draw);
@@ -159,9 +164,7 @@ function draw() {
         then = now - (delta % interval);
         if (mousePos.pressed) {
             //setMaterial(pixels.data, 4 * mousePos.y * mainCanvas.width + 4 * mousePos.x, sand);
-            addSand();
-            velocities[4 * mousePos.y * mainCanvas.width + 4 * mousePos.x] = 1;
-            velocities[4 * mousePos.y * mainCanvas.width + 4 * mousePos.x + 4] = 1;
+            addSand(6);
         }
 
         if (play) {

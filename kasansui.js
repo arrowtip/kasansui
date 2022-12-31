@@ -98,12 +98,44 @@ function mouseMove(evt) {
     mousePos.y = (evt.offsetY == undefined ? evt.layerY : evt.offsetY);
 }
 
+function touchStart(evt) {
+    console.log("touchstart");
+    evt.preventDefault();
+    mousePos.x = parseInt(evt.touches[0].clientX - mainCanvas.getBoundingClientRect().left);
+    mousePos.y = parseInt(evt.touches[0].clientY - mainCanvas.getBoundingClientRect().top);
+    mousePos.pressed = true;
+}
+
+function touchEnd(evt) {
+    console.log("touchend");
+    evt.preventDefault();
+    mousePos.pressed = false;
+}
+
+function touchMove(evt) {
+    console.log("touchmove");
+    evt.preventDefault();
+    mousePos.x = parseInt(evt.touches[0].clientX - mainCanvas.getBoundingClientRect().left);
+    mousePos.y = parseInt(evt.touches[0].clientY - mainCanvas.getBoundingClientRect().top);
+    console.log(mousePos.y);
+}
+
+function touchCancel(evt) {
+    console.log("touchcancel");
+    evt.preventDefault();
+    mousePos.pressed = false;
+}
+
 function addListeners() {
     mainCanvas.addEventListener("mousedown", mouseDown, false);
     /* resize events are only fired on the window object */
     window.addEventListener("resize", resize, false);
     mainCanvas.addEventListener("mousemove", mouseMove, false);
     window.addEventListener("mouseup", mouseUp, false);
+    mainCanvas.addEventListener("touchstart", touchStart, false);
+    mainCanvas.addEventListener("touchend", touchEnd, false);
+    mainCanvas.addEventListener("touchmove", touchMove, false);
+    mainCanvas.addEventListener("touchcancel", touchCancel, false);
 
 }
 

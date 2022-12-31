@@ -83,6 +83,8 @@ function resize() {
 
 function mouseDown(evt) {
     // console.log("mousedown handler triggered");
+    mousePos.x = (evt.offsetX == undefined ? evt.layerX : evt.offsetX);
+    mousePos.y = (evt.offsetY == undefined ? evt.layerY : evt.offsetY);
     mousePos.pressed = true;
 }
 

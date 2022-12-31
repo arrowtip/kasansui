@@ -16,6 +16,7 @@ html {
     overflow-y: hidden;
     width: 100vw;
     height: 100vh;
+    touch-action: none;
 }
 
 body {

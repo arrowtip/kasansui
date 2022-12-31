@@ -41,12 +41,11 @@ function setMaterial(array, startingIndex, material) {
 }
 
 function gravityChange(value) {
-    console.log("val: " + value);
+    // console.log("gravity change: " + value);
     for (let gravitySlider of gravitySliders) {
         gravitySlider.value = value;
     }
     gravity = parseInt(value);
-    console.log("gravity change: " + gravity);
 }
 
 function reset() {
@@ -99,7 +98,7 @@ function mouseMove(evt) {
 }
 
 function touchStart(evt) {
-    console.log("touchstart");
+    // console.log("touchstart");
     evt.preventDefault();
     mousePos.x = parseInt(evt.touches[0].clientX - mainCanvas.getBoundingClientRect().left);
     mousePos.y = parseInt(evt.touches[0].clientY - mainCanvas.getBoundingClientRect().top);
@@ -107,21 +106,20 @@ function touchStart(evt) {
 }
 
 function touchEnd(evt) {
-    console.log("touchend");
+    // console.log("touchend");
     evt.preventDefault();
     mousePos.pressed = false;
 }
 
 function touchMove(evt) {
-    console.log("touchmove");
+    // console.log("touchmove");
     evt.preventDefault();
     mousePos.x = parseInt(evt.touches[0].clientX - mainCanvas.getBoundingClientRect().left);
     mousePos.y = parseInt(evt.touches[0].clientY - mainCanvas.getBoundingClientRect().top);
-    console.log(mousePos.y);
 }
 
 function touchCancel(evt) {
-    console.log("touchcancel");
+    // console.log("touchcancel");
     evt.preventDefault();
     mousePos.pressed = false;
 }

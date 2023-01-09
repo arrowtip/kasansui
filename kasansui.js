@@ -5,6 +5,7 @@ let pixels = context.createImageData(mainCanvas.width, mainCanvas.height);
 const interval = 32;
 let delta;
 let then = Date.now();
+let leftToRight = true;
 
 let play = true;
 let gravity = 1;
@@ -140,41 +141,46 @@ function addListeners() {
 }
 
 function animate() {
-    for (let i = pixels.data.length - pixels.width * 4 - 4; i >= 0; i -= 4) {
-        /* test if alpha channel is zero (aka pixel empty) */
-        if (pixels.data[i + 3] != 0) {
-            let currVelo = velocities[i];
-            let targetIndex = i;
-            let targetVelo = currVelo + gravity;
-            while (currVelo > 0 && targetIndex < pixels.data.length - pixels.width * 4 - 4) {
-                /* test if pixel underneath is free */
-                if (pixels.data[targetIndex + pixels.width * 4 + 3] == 0) {
-                    targetIndex += pixels.width * 4;
-                    currVelo--;
-                /* test if pixel to the bottom left is free and not outside the box */
-                } else if ((targetIndex % (pixels.width * 4) != 0) 
-                        && pixels.data[targetIndex + pixels.width * 4 - 1] == 0) {
-                    targetIndex += pixels.width * 4 - 4;
-                    currVelo -= 2;
-                    targetVelo--;
-                /* test if pixel to the bottom right is free and not outside the box */
-                } else if (((targetIndex + 4) % (pixels.width * 4) != 0) 
-                        && pixels.data[targetIndex + pixels.width * 4 + 4 + 3] == 0) {
-                    targetIndex += pixels.width * 4 + 4;
-                    currVelo -= 2;
-                    targetVelo--;
+    for (let y = pixels.height - 2; y >= 0; y--) {
+        /* hole leftToRight stuff necessary so sand flows symmetrically */
+        for (let x = (leftToRight ? 0 : pixels.width - 1); 
+        (leftToRight ? x < pixels.width : x > 0); (leftToRight ? x++ : x--)) {
+            let i = pixels.width * 4 * y + 4 * x;
+
+            if (pixels.data[i + 3] != 0) {
+                let currVelo = velocities[i];
+                let targetIndex = i;
+                let targetVelo = currVelo + gravity;
+                while (currVelo > 0 && targetIndex < pixels.data.length - pixels.width * 4) {
+                    /* test if pixel underneath is free */
+                    if (pixels.data[targetIndex + pixels.width * 4 + 3] == 0) {
+                        targetIndex += pixels.width * 4;
+                        currVelo--;
+                    /* test if pixel to the bottom right is free and not outside the box */
+                    } else if (((targetIndex + 4) % (pixels.width * 4) != 0) 
+                            && pixels.data[targetIndex + pixels.width * 4 + 7] == 0) {
+                        targetIndex += pixels.width * 4 + 4;
+                        currVelo -= 2;
+                        targetVelo -= 2;
+                    /* test if pixel to the bottom left is free and not outside the box */
+                    } else if ((targetIndex % (pixels.width * 4) != 0) 
+                            && pixels.data[targetIndex + pixels.width * 4 - 1] == 0) {
+                        targetIndex += pixels.width * 4 - 4;
+                        currVelo -= 2;
+                        targetVelo -= 2;
+                    } else {
+                        targetVelo = 0;
+                        break;
+                    }
                 }
-                else {
-                    targetVelo = 0;
-                    break;
-                }
+                setMaterial(pixels.data, i, nothing);
+                velocities[i] = undefined;
+                setMaterial(pixels.data, targetIndex, sand);
+                velocities[targetIndex] = Math.max(targetVelo, 1);
             }
-            setMaterial(pixels.data, i, nothing);
-            velocities[i] = undefined;
-            setMaterial(pixels.data, targetIndex, sand);
-            velocities[targetIndex] = Math.max(targetVelo, 1);
         }
     }
+    leftToRight = !leftToRight;
 }
 
 function addSand(radius) {

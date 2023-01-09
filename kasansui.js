@@ -196,10 +196,9 @@ function draw() {
         then = now - (delta % interval);
         if (mousePos.pressed) {
             //setMaterial(pixels.data, 4 * mousePos.y * mainCanvas.width + 4 * mousePos.x, sand);
-            addSand(6);
-            addSand(8);
-            addSand(10);
-            addSand(8);
+            for (let i = 0; i <= pixels.width / 20; i += 1) {
+                addSand(i);
+            }
         }
 
         if (play) {

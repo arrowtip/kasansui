@@ -79,7 +79,7 @@ h1 {
 }
 
 #main-canvas {
-    cursor: crosshair;
+    cursor: pointer;
     background: #aabbcc;
     position: absolute;
     display: inline-block;

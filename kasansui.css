@@ -96,7 +96,7 @@ h1 {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    background: blue;
+    background: #ccddee;
     border-radius: 0;
     margin-bottom: 0;
     margin-left: -0.5rem;
@@ -119,6 +119,7 @@ h1 {
     padding: .4rem;
     width: 100vw;
     box-sizing: border-box;
+    background: #ccddee;
 }
 
 #desktop-buttons {
@@ -169,7 +170,7 @@ h1 {
 
 /******************************************************************************************/
 
-/* tablets and mobile phones with a not super low resolution screen */
+/* tablets and mobile phones with a moderate resolution */
 @media (orientation: portrait) and (width >= 26rem) {
     #desktop-footer {
         display: none !important;
@@ -321,6 +322,7 @@ h1 {
     }
 }
 
+/* very small mobile phones */
 @media (orientation: portrait) and (width < 26rem) {
     #header {
         display: none !important;
@@ -350,9 +352,11 @@ h1 {
     body {
         grid-template-columns: 1fr;
         grid-template-rows: 1fr auto;
+        gap: .2rem;
     }
 }
 
+/* very small horizontal screens */
 @media (orientation: landscape) and (height < 20rem) {
     #mobile-footer {
         display: none !important;
@@ -378,7 +382,6 @@ h1 {
         grid-template-rows: 1fr;
         grid-template-columns: 1fr auto;
         gap: .2rem;
-        padding: .2rem;
     }
 
     #canvas-div {
